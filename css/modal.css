@@ -1,0 +1,149 @@
+/* ===== AUTH BUTTONS ===== */
+.auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.auth-buttons button {
+  padding: 10px 16px;
+  border: none;
+  background-color: #111;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.auth-buttons button:hover {
+  background-color: #333;
+}
+
+/* ===== LOGIN MODAL ===== */
+.login-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.login-modal.show {
+  display: flex;
+}
+
+.login-modal-content {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  background: #f7f7f7;
+  padding: 40px 60px;
+  box-sizing: border-box;
+}
+
+.login-modal-close {
+  position: absolute;
+  top: 15px;
+  right: 18px;
+  border: none;
+  background: transparent;
+  font-size: 34px;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.login-modal-close:hover {
+  color: #000;
+}
+
+.login-modal-title {
+  text-align: center;
+  font-size: 54px;
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 28px;
+}
+
+.login-modal-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 30px;
+  padding-bottom: 12px;
+}
+
+.login-tab {
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  color: #b5b5b5;
+  cursor: pointer;
+}
+
+.login-tab.active {
+  color: #111;
+  font-weight: 500;
+}
+
+.login-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-modal-form label {
+  font-size: 16px;
+  color: #111;
+}
+
+.login-modal-form input {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #cfcfcf;
+  background: #fff;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.login-password-wrapper {
+  position: relative;
+}
+
+.login-password-wrapper input {
+  padding-right: 52px;
+}
+
+.toggle-password-btn {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.forgot-password-link {
+  text-decoration: none;
+  color: #111;
+  font-size: 16px;
+  margin-top: 4px;
+  margin-bottom: 10px;
+}
+
+.login-submit-btn {
+  margin-top: 10px;
+  padding: 18px;
+  border: none;
+  background: #1f1f1f;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.login-submit-btn:hover {
+  background: #000;
+}

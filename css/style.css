@@ -1,0 +1,279 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f6f6f6;
+  color: #333;
+  line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  background-color: #ffffff;
+  padding: 20px 40px;
+  border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.logo h1 {
+  font-size: 28px;
+  color: #222;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  font-size: 16px;
+  color: #444;
+  transition: 0.3s;
+}
+
+.nav a:hover {
+  color: #000;
+}
+
+.hero {
+  background: linear-gradient(to right, #fbeff2, #f7f7f7);
+  border-radius: 16px;
+  padding: 60px 30px;
+  margin-bottom: 25px;
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.hero h2 {
+  font-size: 36px;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.hero button {
+  padding: 12px 20px;
+  background-color: #222;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.hero button:hover {
+  background-color: #444;
+}
+
+.categories,
+.controls,
+.form-section,
+.totals,
+.products-section {
+  background-color: #ffffff;
+  padding: 20px;
+  margin-bottom: 25px;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+.categories h2,
+.form-section h2,
+.totals h2,
+.products-section h2 {
+  margin-bottom: 18px;
+  color: #222;
+}
+
+.categories-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 15px;
+}
+
+.category-card {
+  background-color: #fafafa;
+  border: 1px solid #e2e2e2;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.category-card:hover {
+  background-color: #f1f1f1;
+  transform: translateY(-2px);
+}
+
+.controls {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.controls input,
+.controls select,
+.form-section input,
+.form-section button {
+  padding: 10px 12px;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.controls input,
+.controls select {
+  flex: 1;
+  min-width: 220px;
+}
+
+#productForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+#productForm label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: bold;
+}
+
+#productForm button {
+  grid-column: span 2;
+  background-color: #222;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  padding: 12px;
+}
+
+#productForm button:hover {
+  background-color: #444;
+}
+
+.totals p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.products-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.product-card {
+  background-color: #fafafa;
+  border: 1px solid #dddddd;
+  border-radius: 14px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.product-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.product-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.product-card p {
+  margin-bottom: 6px;
+  color: #555;
+}
+
+.card-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.card-buttons button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background-color: #222;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card-buttons button:hover {
+  background-color: #444;
+}
+
+.footer {
+  background-color: #ffffff;
+  border-top: 1px solid #e5e5e5;
+  text-align: center;
+  padding: 20px;
+  margin-top: 30px;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 20px;
+  }
+
+  .hero {
+    padding: 40px 20px;
+  }
+
+  .hero h2 {
+    font-size: 28px;
+  }
+
+  #productForm {
+    grid-template-columns: 1fr;
+  }
+
+  #productForm button {
+    grid-column: span 1;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

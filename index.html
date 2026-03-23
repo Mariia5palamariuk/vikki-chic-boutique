@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fashion Store</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/modal.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">
+        <h1>VIKKI Chic Boutique</h1>
+      </div>
+
+      <nav class="nav">
+        <a href="#">Головна</a>
+        <a href="#">Каталог</a>
+        <a href="#">Новинки</a>
+        <a href="#">Sale</a>
+        <a href="#">Контакти</a>
+      </nav>
+      <div class="auth-buttons">
+        <button type="button" id="myOrdersBtn" style="display: none">
+          Мої замовлення
+        </button>
+        <button type="button" id="loginBtn">Увійти</button>
+        <button type="button" id="logoutBtn" style="display: none">
+          Вийти
+        </button>
+      </div>
+      <p id="authStatus"></p>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <div class="hero-content">
+          <h2>Нова колекція жіночого одягу</h2>
+          <p>Стильні речі для щоденного образу</p>
+          <button type="button">Перейти в каталог</button>
+        </div>
+      </section>
+
+      <section class="categories">
+        <h2>Категорії</h2>
+
+        <div class="categories-list">
+          <div class="category-card" data-category="all">Усі</div>
+          <div class="category-card" data-category="Сукні">Сукні</div>
+          <div class="category-card" data-category="Футболки">Футболки</div>
+          <div class="category-card" data-category="Джинси">Джинси</div>
+          <div class="category-card" data-category="Светри">Светри</div>
+          <div class="category-card" data-category="Сорочки">Сорочки</div>
+          <div class="category-card" data-category="Штани">Штани</div>
+        </div>
+      </section>
+
+      <section class="controls">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Пошук товару за назвою"
+        />
+
+        <select id="sortSelect">
+          <option value="default">Сортувати</option>
+          <option value="name-asc">Назва A-Z</option>
+          <option value="name-desc">Назва Z-A</option>
+          <option value="price-asc">Ціна ↑</option>
+          <option value="price-desc">Ціна ↓</option>
+        </select>
+      </section>
+
+      <section class="form-section">
+        <h2>Додати / редагувати товар</h2>
+
+        <form id="GoodsForm">
+          <input type="hidden" id="goodsId" />
+
+          <label for="name">
+            Назва товару:
+            <input type="text" id="name" name="name" required />
+          </label>
+
+          <label for="brand">
+            Бренд:
+            <input type="text" id="brand" name="brand" required />
+          </label>
+
+          <label for="price">
+            Ціна:
+            <input type="number" id="price" name="price" min="0" required />
+          </label>
+
+          <label for="category">
+            Категорія:
+            <input type="text" id="category" name="category" required />
+          </label>
+
+          <label for="size">
+            Розмір:
+            <input type="text" id="size" name="size" required />
+          </label>
+
+          <label for="color">
+            Колір:
+            <input type="text" id="color" name="color" required />
+          </label>
+
+          <label for="stock">
+            Кількість:
+            <input type="number" id="stock" name="stock" min="0" required />
+          </label>
+
+          <label for="imageUrl">
+            URL фото:
+            <input type="text" id="imageUrl" name="imageUrl" />
+          </label>
+
+          <button type="submit">Зберегти товар</button>
+        </form>
+      </section>
+
+      <section class="totals">
+        <h2>Загальна інформація</h2>
+        <p>Кількість товарів: <span id="totalGoods">0</span></p>
+        <p>Загальна вартість складу: <span id="totalValue">0</span> грн</p>
+      </section>
+
+      <section class="goods-section">
+        <h2>Каталог товарів</h2>
+        <div id="goodsList" class="goods-list"></div>
+      </section>
+      <section id="cartSection" class="cart-section">
+        <h2>Кошик</h2>
+        <div id="cartList"></div>
+        <p><strong>Загальна сума:</strong> <span id="cartTotal">0</span> грн</p>
+        <button type="button" id="checkoutBtn">Оформити замовлення</button>
+      </section>
+      <section id="ordersSection" class="orders-section" style="display: none">
+        <h2>Мої замовлення</h2>
+        <div id="ordersList"></div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© 2026 Fashion Store</p>
+      <p>Доставка | Оплата | Контакти</p>
+    </footer>
+
+    <!-- Модальне вікно входу -->
+    <div id="loginModal" class="login-modal">
+  <div class="login-modal-content">
+    <button id="closeLoginModal" class="login-modal-close">&times;</button>
+
+    <h2 class="login-modal-title">Особистий кабінет</h2>
+
+    <div class="login-modal-tabs">
+      <button type="button" class="login-tab active" id="loginTabBtn">ВХІД</button>
+      <button type="button" class="login-tab" id="registerTabBtn">РЕЄСТРАЦІЯ</button>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <form id="loginForm" class="login-modal-form">
+      <label for="loginEmail">E-mail:</label>
+      <input
+        type="email"
+        id="loginEmail"
+        name="email"
+        placeholder="Ваш E-mail"
+        autocomplete="username"
+        required
+      />
+
+      <label for="loginPassword">Пароль:</label>
+
+      <div class="login-password-wrapper">
+        <input
+          type="password"
+          id="loginPassword"
+          name="password"
+          placeholder="******"
+          autocomplete="current-password"
+          required
+        />
+        <button
+          type="button"
+          id="togglePasswordBtn"
+          class="toggle-password-btn"
+        >
+          👁
+        </button>
+      </div>
+
+      <a href="#" class="forgot-password-link">Забули пароль?</a>
+
+      <button type="submit" class="login-submit-btn">Увійти</button>
+    </form>
+
+    <!-- REGISTER FORM -->
+    <form
+      id="modalRegisterForm"
+      class="login-modal-form"
+      style="display: none;"
+    >
+      <label for="modalRegisterEmail">E-mail:</label>
+      <input
+        type="email"
+        id="modalRegisterEmail"
+        name="email"
+        placeholder="Ваш E-mail"
+        autocomplete="username"
+        required
+      />
+
+      <label for="modalRegisterPassword">Пароль:</label>
+      <input
+        type="password"
+        id="modalRegisterPassword"
+        name="password"
+        placeholder="******"
+        autocomplete="new-password"
+        required
+      />
+
+      <button type="submit" class="login-submit-btn">Зареєструватися</button>
+    </form>
+  </div>
+</div>
+</div>
+    <script src="./scripts/auth.js"></script>
+    <script src="./scripts/app.js"></script>
+    <script src="./scripts/modal.js"></script>
+  </body>
+</html>
