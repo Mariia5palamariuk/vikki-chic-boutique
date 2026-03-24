@@ -156,20 +156,20 @@ a {
   min-width: 220px;
 }
 
-#productForm {
+#goodForm {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
 }
 
-#productForm label {
+#goodForm label {
   display: flex;
   flex-direction: column;
   gap: 6px;
   font-weight: bold;
 }
 
-#productForm button {
+#goodForm button {
   grid-column: span 2;
   background-color: #222;
   color: white;
@@ -179,7 +179,7 @@ a {
   padding: 12px;
 }
 
-#productForm button:hover {
+#goodForm button:hover {
   background-color: #444;
 }
 
@@ -188,13 +188,13 @@ a {
   margin-bottom: 10px;
 }
 
-.products-list {
+.goods-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 20px;
 }
 
-.product-card {
+.good-card {
   background-color: #fafafa;
   border: 1px solid #dddddd;
   border-radius: 14px;
@@ -202,7 +202,7 @@ a {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.product-card img {
+.good-card img {
   width: 100%;
   height: 260px;
   object-fit: cover;
@@ -210,13 +210,13 @@ a {
   margin-bottom: 12px;
 }
 
-.product-card h3 {
+.good-card h3 {
   font-size: 20px;
   margin-bottom: 10px;
   color: #222;
 }
 
-.product-card p {
+.good-card p {
   margin-bottom: 6px;
   color: #555;
 }

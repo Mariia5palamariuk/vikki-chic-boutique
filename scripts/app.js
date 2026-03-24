@@ -1,6 +1,6 @@
 let goods = [];
 let cart = [];
-let editingGoodsId = null;
+let editingGoodId = null;
 let selectedCategory = "all";
 
 const GOODS_API_URL = "https://r211anoshk.execute-api.eu-north-1.amazonaws.com/vikki-chic-boutique-api/goods";
@@ -100,7 +100,7 @@ if (checkoutBtn) {
   checkoutBtn.addEventListener("click", createOrderFromCart);
 }
 
-function renderGooods(items) {
+function renderGoods(items) {
   goodsList.innerHTML = "";
 
   items.forEach((good) => {
