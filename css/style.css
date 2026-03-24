@@ -22,6 +22,7 @@ a {
   padding: 20px;
 }
 
+/* HEADER */
 .header {
   background-color: #ffffff;
   padding: 20px 40px;
@@ -36,6 +37,7 @@ a {
 .logo h1 {
   font-size: 28px;
   color: #222;
+  letter-spacing: 1px;
 }
 
 .nav {
@@ -47,18 +49,20 @@ a {
 .nav a {
   font-size: 16px;
   color: #444;
-  transition: 0.3s;
+  transition: color 0.3s ease;
 }
 
 .nav a:hover {
   color: #000;
 }
 
+/* HERO */
 .hero {
-  background: linear-gradient(to right, #fbeff2, #f7f7f7);
-  border-radius: 16px;
-  padding: 60px 30px;
+  background: #f7f3ef;
+  border-radius: 20px;
+  padding: 70px 40px;
   margin-bottom: 25px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
 }
 
 .hero-content {
@@ -66,31 +70,36 @@ a {
 }
 
 .hero h2 {
-  font-size: 36px;
+  font-size: 38px;
   margin-bottom: 15px;
   color: #222;
+  line-height: 1.2;
 }
 
 .hero p {
   font-size: 18px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   color: #666;
 }
 
 .hero button {
-  padding: 12px 20px;
+  padding: 14px 24px;
   background-color: #222;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .hero button:hover {
   background-color: #444;
+  transform: translateY(-1px);
 }
 
+/* COMMON SECTIONS */
 .categories,
 .controls,
 .form-section,
@@ -111,6 +120,7 @@ a {
   color: #222;
 }
 
+/* CATEGORIES */
 .categories-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -124,7 +134,7 @@ a {
   padding: 20px;
   text-align: center;
   font-weight: bold;
-  transition: 0.3s;
+  transition: background-color 0.3s ease, transform 0.3s ease;
   cursor: pointer;
 }
 
@@ -133,6 +143,7 @@ a {
   transform: translateY(-2px);
 }
 
+/* CONTROLS */
 .controls {
   display: flex;
   gap: 15px;
@@ -156,6 +167,7 @@ a {
   min-width: 220px;
 }
 
+/* FORM */
 #goodForm {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -175,7 +187,7 @@ a {
   color: white;
   border: none;
   cursor: pointer;
-  transition: 0.3s;
+  transition: background-color 0.3s ease;
   padding: 12px;
 }
 
@@ -183,11 +195,13 @@ a {
   background-color: #444;
 }
 
+/* TOTALS */
 .totals p {
   font-size: 18px;
   margin-bottom: 10px;
 }
 
+/* GOODS */
 .goods-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -195,11 +209,18 @@ a {
 }
 
 .good-card {
-  background-color: #fafafa;
-  border: 1px solid #dddddd;
-  border-radius: 14px;
+  background-color: #f4eaea;
+  border: 1px solid #e7d6d6;
+  border-radius: 16px;
   padding: 15px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.good-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
 .good-card img {
@@ -208,6 +229,7 @@ a {
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 12px;
+  display: block;
 }
 
 .good-card h3 {
@@ -221,27 +243,38 @@ a {
   color: #555;
 }
 
+/* CARD BUTTONS */
 .card-buttons {
   display: flex;
   gap: 10px;
   margin-top: 15px;
+  width: 100%;
 }
 
 .card-buttons button {
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 48px;
   padding: 10px;
   border: none;
   border-radius: 8px;
   background-color: #222;
   color: white;
   cursor: pointer;
-  transition: 0.3s;
+  transition: background-color 0.3s ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.2;
 }
 
 .card-buttons button:hover {
   background-color: #444;
 }
 
+/* FOOTER */
 .footer {
   background-color: #ffffff;
   border-top: 1px solid #e5e5e5;
@@ -251,6 +284,7 @@ a {
   color: #666;
 }
 
+/* MOBILE */
 @media (max-width: 768px) {
   .header {
     padding: 20px;
@@ -264,16 +298,24 @@ a {
     font-size: 28px;
   }
 
-  #productForm {
+  .hero p {
+    font-size: 16px;
+  }
+
+  #goodForm {
     grid-template-columns: 1fr;
   }
 
-  #productForm button {
+  #goodForm button {
     grid-column: span 1;
   }
 
   .controls {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .card-buttons {
+    flex-direction: column;
   }
 }
