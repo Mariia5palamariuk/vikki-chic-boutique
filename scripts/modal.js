@@ -2,7 +2,7 @@ const modalLoginBtn = document.getElementById("loginBtn");
 const modalLogoutBtn = document.getElementById("logoutBtn");
 const modalMyOrdersBtn = document.getElementById("myOrdersBtn");
 
-const loginModal = document.getElementById("loginModal");
+const modalWindow = document.getElementById("loginModal");
 const closeLoginModal = document.getElementById("closeLoginModal");
 
 const togglePasswordBtn = document.getElementById("togglePasswordBtn");
@@ -19,6 +19,11 @@ const loginTabBtn = document.getElementById("loginTabBtn");
 const registerTabBtn = document.getElementById("registerTabBtn");
 
 const modalAuthStatus = document.getElementById("authStatus");
+
+console.log("modal.js loaded");
+console.log("modalLoginBtn:", modalLoginBtn);
+console.log("modalWindow:", modalWindow);
+console.log("closeLoginModal:", closeLoginModal);
 
 function updateAuthButtons() {
   const isAuth = Auth.isAuthenticated();
@@ -39,7 +44,7 @@ function updateAuthButtons() {
 
   if (modalAuthStatus) {
     modalAuthStatus.textContent =
-      isAuth && user ? `Ви увійшли як ${user.name}` : "";
+      isAuth && user ? `Ви увійшли як ${user.name || user.email}` : "";
   }
 }
 
@@ -73,22 +78,29 @@ if (registerTabBtn) {
   });
 }
 
-if (modalLoginBtn && loginModal && closeLoginModal) {
+if (modalLoginBtn && modalWindow) {
   modalLoginBtn.addEventListener("click", () => {
     console.log("Open login modal");
-    loginModal.classList.add("show");
+    modalWindow.classList.add("show");
+    modalWindow.style.display = "flex";
     showLoginTab();
   });
+}
 
+if (closeLoginModal && modalWindow) {
   closeLoginModal.addEventListener("click", () => {
     console.log("Close login modal");
-    loginModal.classList.remove("show");
+    modalWindow.classList.remove("show");
+    modalWindow.style.display = "none";
   });
+}
 
-  loginModal.addEventListener("click", (event) => {
-    if (event.target === loginModal) {
+if (modalWindow) {
+  modalWindow.addEventListener("click", (event) => {
+    if (event.target === modalWindow) {
       console.log("Close modal by overlay click");
-      loginModal.classList.remove("show");
+      modalWindow.classList.remove("show");
+      modalWindow.style.display = "none";
     }
   });
 }
@@ -102,7 +114,7 @@ if (togglePasswordBtn && loginPassword) {
   });
 }
 
-if (loginForm) {
+if (loginForm && loginEmail && loginPassword) {
   loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -120,17 +132,14 @@ if (loginForm) {
       console.log("Login result:", result);
 
       if (result.token) {
-        if (loginModal) {
-          loginModal.classList.remove("show");
+        if (modalWindow) {
+          modalWindow.classList.remove("show");
+          modalWindow.style.display = "none";
         }
 
         loginForm.reset();
-
-        if (typeof updateAuthUI === "function") {
-          updateAuthUI();
-        } else {
-          updateAuthButtons();
-        }
+        updateAuthButtons();
+        window.dispatchEvent(new CustomEvent("authChanged"));
       } else {
         alert(result.message || "Не вдалося увійти");
       }
@@ -141,7 +150,7 @@ if (loginForm) {
   });
 }
 
-if (modalRegisterForm) {
+if (modalRegisterForm && modalRegisterEmail && modalRegisterPassword) {
   modalRegisterForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -155,10 +164,7 @@ if (modalRegisterForm) {
 
       console.log("Signup result:", result);
 
-      if (
-        result.message &&
-        result.message.toLowerCase().includes("успішно")
-      ) {
+      if (result.message && result.message.toLowerCase().includes("успішно")) {
         alert("Реєстрація успішна. Тепер увійдіть.");
         modalRegisterForm.reset();
         showLoginTab();
@@ -172,5 +178,5 @@ if (modalRegisterForm) {
   });
 }
 
-updateAuthButtons();
-showLoginTab();
+ updateAuthButtons();
+ showLoginTab();

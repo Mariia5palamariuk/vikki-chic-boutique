@@ -1,65 +1,42 @@
-function updateAuthUI() {
-  const loginBtn = document.getElementById('loginBtn');
-  const logoutBtn = document.getElementById('logoutBtn');
-  const myOrdersBtn = document.getElementById('myOrdersBtn');
-  const authStatus = document.getElementById('authStatus');
+console.log("login.js loaded");
 
-  const isAuth = Auth.isAuthenticated();
-  const user = Auth.getUser();
+const loginForm = document.getElementById("loginForm");
+const loginModal = document.getElementById("loginModal");
 
-  console.log('Updating auth UI...');
-  console.log('isAuth:', isAuth);
-  console.log('user:', user);
-
-  if (loginBtn) {
-    loginBtn.style.display = isAuth ? 'none' : 'inline-block';
-  }
-
-  if (logoutBtn) {
-    logoutBtn.style.display = isAuth ? 'inline-block' : 'none';
-  }
-
-  if (myOrdersBtn) {
-    myOrdersBtn.style.display = isAuth ? 'inline-block' : 'none';
-  }
-
-  if (authStatus) {
-    authStatus.textContent = isAuth && user
-      ? `Ви увійшли як ${user.name}`
-      : '';
-  }
-}
-
-const loginForm = document.getElementById('loginForm');
-const loginModal = document.getElementById('loginModal');
+console.log("loginForm:", loginForm);
+console.log("loginModal:", loginModal);
 
 if (loginForm) {
-  loginForm.addEventListener('submit', async (e) => {
+  loginForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const email = document.getElementById('loginEmail').value.trim();
-    const password = document.getElementById('loginPassword').value.trim();
+    const emailInput = document.getElementById("loginEmail");
+    const passwordInput = document.getElementById("loginPassword");
 
-    console.log('Login form submit:', { email, password });
+    const email = emailInput ? emailInput.value.trim() : "";
+    const password = passwordInput ? passwordInput.value.trim() : "";
+
+    console.log("Login form submit:", { email, password });
 
     const result = await Auth.login(email, password);
 
-    console.log('Login result:', result);
+    console.log("LOGIN result full:", result);
+    console.log("LOCAL user after login:", Auth.getUser());
+    console.log("LOCAL role after login:", Auth.getUser()?.role);
 
     if (result.token) {
-      alert('Успішний вхід');
+      alert("Успішний вхід");
 
       if (loginModal) {
-        loginModal.style.display = 'none';
+        loginModal.style.display = "none";
+        loginModal.classList.remove("show");
       }
 
       loginForm.reset();
 
-      updateAuthUI();
+      window.dispatchEvent(new CustomEvent("authChanged"));
     } else {
-      alert(result.message || 'Помилка логіну');
+      alert(result.message || "Помилка логіну");
     }
   });
-}
-
-updateAuthUI();
+ }
